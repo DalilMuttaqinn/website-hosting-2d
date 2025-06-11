@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dalil Pediaa</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="icon" href="../img/favicon/favicon.png" type="image/png">
+</head>
+<body class="text-white font-sans relative bg-black">
+
+    <!-- Preloader -->
+  <div id="preloader" class="fixed inset-0 bg-black flex items-center justify-center z-50">
+    <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+  </div>
+
+  <!-- Bg Partikel -->
+  <canvas id="particles" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+
+  <!-- Navbar -->
+ <nav class="fixed top-0 left-0 w-full flex items-center justify-between px-6 py-4 glass z-50"> <!-- ? UBAH: tambah fixed top-0 left-0 w-full -->
+  <div class="text-2xl font-bold text-blue-400 px-4 py-2 rounded-lg glass">Dalil Pediaa</div>
+  <div class="hidden md:flex gap-6 items-center relative">
+    <a href="../index.html" class="nav-link hover:text-blue-400">Home</a>
+
+    <!-- Dropdown -->
+    <div class="relative">
+      <button id="dropdownButton" class="nav-link hover:text-blue-400 flex items-center gap-1">
+        Layanan
+        <svg class="w-4 h-4 transition-transform duration-300" id="dropdownArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div id="dropdownMenu" class="absolute hidden bg-gray-800 mt-2 rounded-lg py-2 w-40 shadow-lg opacity-0 scale-95 transition-all duration-300 origin-top z-50 flex flex-col">
+        <a href="basic.html" class="px-4 py-2 hover:bg-gray-700 text-white">Hosting Basic</a>
+        <a href="premium.html" class="px-4 py-2 hover:bg-gray-700 text-white">Hosting Premium</a>
+        <a href="bot-wa.html" class="px-4 py-2 hover:bg-gray-700 text-white">Hosting Bot WA</a>
+        <a href="private-server.html" class="px-4 py-2 hover:bg-gray-700 text-white">Private Node</a>
+        <a href="domain.html" class="px-4 py-2 hover:bg-gray-700 text-white">Domain</a>
+      </div>
+    </div>
+
+    <a href="#contact-form" class="nav-link hover:text-blue-400">Kontak</a>
+    <a href="#faq" class="nav-link hover:text-blue-400">FAQ</a>
+  </div>
+
+  <button id="hamburger" class="md:hidden flex flex-col gap-1 z-50 transition-transform duration-300">
+    <span class="w-8 h-1 bg-white"></span>
+    <span class="w-8 h-1 bg-white"></span>
+    <span class="w-8 h-1 bg-white"></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobileMenuOverlay" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-md hidden z-40"></div>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="fixed top-[80px] right-0 w-64 h-[calc(100%-80px)] bg-gray-900 p-6 flex flex-col gap-4 transform translate-x-full transition-transform duration-500 z-50"> <!-- ? UBAH: sesuaikan top-[80px] agar pas di bawah navbar -->
+  <button id="closeMenu" class="self-end mb-4 text-white text-2xl">&times;</button>
+  <a href="../index.html" class="nav-link text-blue-400 hover:text-blue-300">Home</a>
+
+  <!-- Dropdown Mobile -->
+  <div class="text-blue-400">
+    <button id="mobileDropdownButton" class="w-full text-left py-2 flex justify-between items-center">
+      Layanan
+      <svg class="w-4 h-4 transition-transform duration-300" id="mobileDropdownArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+    <div id="mobileDropdownMenu" class="ml-4 flex-col gap-1 hidden opacity-0 scale-95 transition-all duration-300 origin-top">
+      <a href="basic.html" class="py-1 hover:text-blue-300 block">Hosting Basic</a>
+      <a href="premium.html" class="py-1 hover:text-blue-300 block">Hosting Premium</a>
+      <a href="bot-wa.html" class="py-1 hover:text-blue-300 block">Hosting Bot WA</a>
+      <a href="private-server.html" class="py-1 hover:text-blue-300 block">Private Node</a>
+      <a href="domain.html" class="py-1 hover:text-blue-300 block">Domain</a>
+    </div>
+  </div>
+
+  <a href="#contact-form" class="nav-link text-blue-400 hover:text-blue-300">Kontak</a>
+  <a href="#faq" class="nav-link text-blue-400 hover:text-blue-300">FAQ</a>
+</div>
+
+  <!-- Hero Section -->
+  <section id="home" class="h-screen flex flex-col justify-center items-center text-center px-4">
+    <h1 id="typed" class="text-5xl md:text-6xl font-extrabold text-blue-400"></h1>
+    <p class="mt-6 text-gray-300 max-w-xl">Hosting server Game terbaik dengan performa tinggi dan harga terjangkau.</p>
+    <a href="#services" class="mt-8 px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-bold transition-all">Lihat Paket</a>
+  </section>
+
+ 
+  <!-- Paket -->
+  <section id="services" class="py-20 px-6" data-aos="zoom-in">
+    <h2 class="text-4xl font-bold text-center mb-12 text-blue-400">Pilih Paket Private Node Mu</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="glass p-8 rounded-2xl text-center transform transition-transform duration-300 hover:-translate-y-2">
+        <img src="../img/server.jpg" alt="Starter" class="mx-auto mb-4 rounded" />
+        <h3 class="text-2xl font-bold mb-2">Plan 1 (AMD EPYC)</h3>
+        <p class="text-gray-400 mb-2">RAM: 8GB</p>
+        <p class="text-gray-400 mb-2">CPU: 2vCPU'S</p>
+        <p class="text-gray-400 mb-2">DISK: 100GB NVME-SSD</p>
+        <p class="text-gray-400 mb-2">BACKUP: AUTO BACKUP 24/7</p>
+        <p class="text-3xl font-extrabold text-blue-500 mb-4">Rp80.000/Month</p>
+        <a href="https://wa.me/6282164644595" class="button-ripple px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full relative">Pesan</a>
+      </div>
+      <div class="glass p-8 rounded-2xl text-center transform transition-transform duration-300 hover:-translate-y-2">
+        <img src="../img/server.jpg" alt="Starter" class="mx-auto mb-4 rounded" />
+        <h3 class="text-2xl font-bold mb-2">Plan 2 (AMD EPYC)</h3>
+        <p class="text-gray-400 mb-2">RAM: 8GB</p>
+        <p class="text-gray-400 mb-2">CPU: 4vCPU'S</p>
+        <p class="text-gray-400 mb-2">DISK: 160GB NVME-SSD</p>
+        <p class="text-gray-400 mb-2">BACKUP: AUTO BACKUP 24/7</p>
+        <p class="text-3xl font-extrabold text-blue-500 mb-4">Rp160.000/Month</p>
+        <a href="https://wa.me/6282164644595" class="button-ripple px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full relative">Pesan</a>
+      </div>
+      <div class="glass p-8 rounded-2xl text-center transform transition-transform duration-300 hover:-translate-y-2">
+        <img src="../img/server.jpg" alt="Starter" class="mx-auto mb-4 rounded" />
+        <h3 class="text-2xl font-bold mb-2">Plan 3 (AMD EPYC)</h3>
+        <p class="text-gray-400 mb-2">RAM: 16GB</p>
+        <p class="text-gray-400 mb-2">CPU: 4vCPU'S</p>
+        <p class="text-gray-400 mb-2">DISK: 200GB NVME-SSD</p>
+        <p class="text-gray-400 mb-2">BACKUP: AUTO BACKUP 24/7</p>
+        <p class="text-3xl font-extrabold text-blue-500 mb-4">Rp180.000/Month</p>
+        <a href="https://wa.me/6282164644595" class="button-ripple px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full relative">Pesan</a>
+      </div>
+      <div class="glass p-8 rounded-2xl text-center transform transition-transform duration-300 hover:-translate-y-2">
+        <img src="../img/server.jpg" alt="Starter" class="mx-auto mb-4 rounded" />
+        <h3 class="text-2xl font-bold mb-2">Plan 4 (AMD EPYC)</h3>
+        <p class="text-gray-400 mb-2">RAM: 16GB</p>
+        <p class="text-gray-400 mb-2">CPU: 8vCPU'S</p>
+        <p class="text-gray-400 mb-2">DISK: 320GB NVME-SSD</p>
+        <p class="text-gray-400 mb-2">BACKUP: AUTO BACKUP 24/7</p>
+        <p class="text-3xl font-extrabold text-blue-500 mb-4">Rp250.000/Month</p>
+        <a href="https://wa.me/6282164644595" class="button-ripple px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full relative">Pesan</a>
+      </div>
+      <div class="glass p-8 rounded-2xl text-center transform transition-transform duration-300 hover:-translate-y-2">
+        <img src="../img/server.jpg" alt="Starter" class="mx-auto mb-4 rounded" />
+        <h3 class="text-2xl font-bold mb-2">Plan 5 (AMD EPYC)</h3>
+        <p class="text-gray-400 mb-2">RAM: 32GB</p>
+        <p class="text-gray-400 mb-2">CPU: 8vCPU'S</p>
+        <p class="text-gray-400 mb-2">DISK: 400Gib NVME-SSD</p>
+        <p class="text-gray-400 mb-2">BACKUP: AUTO BACKUP 24/7</p>
+        <p class="text-3xl font-extrabold text-blue-500 mb-4">Rp340.000/Month</p>
+        <a href="https://wa.me/6282164644595" class="button-ripple px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full relative">Pesan</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="maps" class="py-20 px-6" data-aos="zoom-in">
+  <h2 class="text-4xl font-bold text-center mb-12 text-blue-400">Lokasi Kami</h2>
+  <div class="max-w-4xl mx-auto">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254832.50533588516!2d98.50468050366172!3d3.6426141379360715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303131cc1c3eb2fd%3A0x23d431c8a6908262!2sMedan%2C%20Kota%20Medan%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1746082563965!5m2!1sid!2sid"
+      width="100%"
+      height="400"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+<section id="contact-form" class="py-20 px-6" data-aos="zoom-in">
+  <h2 class="text-4xl font-bold text-center mb-12 text-blue-400">Hubungi Kami</h2>
+  
+  <form id="emailForm" class="max-w-2xl mx-auto space-y-4 glass p-8 rounded-lg">
+    <input type="text" name="name" placeholder="Nama"
+           class="w-full p-3 rounded bg-gray-800 text-white" required />
+
+    <input type="email" name="email" placeholder="Email"
+           class="w-full p-3 rounded bg-gray-800 text-white" required />
+
+    <textarea name="message" placeholder="Tulis pesan Anda..." rows="5"
+              class="w-full p-3 rounded bg-gray-800 text-white" required></textarea>
+
+    <button type="submit"
+            class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full w-full">
+      Kirim
+    </button>
+
+    <p id="success-message" class="text-green-400 text-center font-semibold hidden">Pesan berhasil dikirim!</p>
+  </form>
+</section>
+
+   <!-- FAQ Section -->
+  <section id="faq" class="py-20 px-6" data-aos="zoom-in">
+    <h2 class="text-4xl font-bold text-center mb-12 text-blue-400">FAQ (Frequently Asked Questions)</h2>
+    <div class="max-w-3xl mx-auto space-y-4">
+      <div class="glass p-4 rounded cursor-pointer faq-item">
+        <h3 class="font-bold">Bagaimana cara memesan?</h3>
+        <p class="hidden mt-2 text-gray-300">Klik tombol “Pesan” di paket yang kamu pilih, lalu isi form order dan menggunakan email asli.</p>
+      </div>
+      <div class="glass p-4 rounded cursor-pointer faq-item">
+        <h3 class="font-bold">Apakah server bisa diupgrade?</h3>
+        <p class="hidden mt-2 text-gray-300">Tentu, kamu bisa upgrade paket kapan saja dengan menghubungi tim kami.</p>
+      </div>
+      <div class="glass p-4 rounded cursor-pointer faq-item">
+        <h3 class="font-bold">Apakah ada garansi?</h3>
+        <p class="hidden mt-2 text-gray-300">Ya, kami memberikan garansi 20 hari untuk semua server.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-gray-400 py-6 px-4 text-center">
+  <p>&copy; 2025 Dalil Pediaa. Semua Hak Dilindungi.</p>
+  <div class="mt-2 space-x-4">
+    <a href="../privacy-policy.html" class="hover:text-blue-400">Privacy Policy</a>
+  </div>
+</footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" class="hidden fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full z-50">
+    ↑
+  </button>
+
+  <!-- WhatsApp Button -->
+  <a href="https://chat.whatsapp.com/EGwxe3yaBFNCiHIWAZhWfF" target="_blank" class="fixed bottom-6 left-6 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full z-50">
+    💬
+  </a>
+
+  <!-- EmailJS CDN -->
+   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+  <script src="../script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init();</script>
+</body>
+</html>

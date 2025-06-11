@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 80px;
+  background: black;
+  overflow-x: hidden;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.active-link {
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+.rotate-90 {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+}
+
+.faq-item p {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  max-height: 0;
+}
+
+.button-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-ripple::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.form-message {
+  margin-top: 10px;
+  font-size: 15px;
+  font-style: italic;
+}
